@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Authenticator</string>
+    <string name="authenticator">AUTHENTICATOR</string>
+    <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
+    <string name="user_registration">USER REGISTRATION</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="register2">REGISTER</string>
+    <string name="lick_here_to_login">Already a user?\nClick here to login</string>
+    <string name="user_dashboard">USER DASHBOARD</string>
+    <string name="dummy_text">Dummy text over here</string>
+    <string name="user_login">USER LOGIN</string>
+    <string name="username2">Username</string>
+    <string name="password2">Password</string>
+    <string name="login2">LOGIN</string>
+    <string name="new_user">New user?\nClick here to register</string>
 </resources>
