@@ -43,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-        final String userName = etUsername.getText().toString().trim();
+        final String name = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        if (userName.isEmpty()) {
+        if (name.isEmpty()) {
             etUsername.setError("Username is required");
             etUsername.requestFocus();
             return;
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getAPI()
-                .checkUser(new User(userName, password));
+                .checkUser(new User(name, password));
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -70,10 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                if (s.equals(userName)) {
+                if (s.equals(name)) {
                     Toast.makeText(LoginActivity.this, "User logged in!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class).putExtra("username", userName));
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class).putExtra("username", name));
                 } else {
                     Toast.makeText(LoginActivity.this, "Incorrect Credentials! Try again!", Toast.LENGTH_LONG).show();
                 }

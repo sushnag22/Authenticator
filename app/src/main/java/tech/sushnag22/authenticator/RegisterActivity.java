@@ -43,10 +43,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String userName = etUsername.getText().toString().trim();
+        String name = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        if (userName.isEmpty()) {
+        if (name.isEmpty()) {
             etUsername.setError("Username is required");
             etUsername.requestFocus();
             return;
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getAPI()
-                .createUser(new User(userName, password));
+                .createUser(new User(name, password));
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
