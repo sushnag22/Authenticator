@@ -1,11 +1,11 @@
 package tech.sushnag22.authenticator;
 
 public class User {
-    private String userName;
+    private String name;
     private String password;
 
-    public User(String userName, String password) {
-        this.userName = userName;
+    public User(String username, String password) {
+        this.name = username;
         this.password = password;
     }
 }
