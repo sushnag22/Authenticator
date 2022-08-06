@@ -1,11 +1,10 @@
 package tech.sushnag22.authenticator;
 
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static  final String BASE_URL = "http://ipAddress:8080/api/";
+    private static  final String BASE_URL = "https://authenticator-rest-api.herokuapp.com/api/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 
