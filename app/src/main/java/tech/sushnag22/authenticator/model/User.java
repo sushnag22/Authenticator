@@ -1,4 +1,4 @@
-package tech.sushnag22.authenticator;
+package tech.sushnag22.authenticator.model;
 
 public class User {
     private String name;

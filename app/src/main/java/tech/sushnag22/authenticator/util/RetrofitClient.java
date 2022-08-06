@@ -1,4 +1,4 @@
-package tech.sushnag22.authenticator;
+package tech.sushnag22.authenticator.util;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

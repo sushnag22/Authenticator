@@ -1,4 +1,4 @@
-package tech.sushnag22.authenticator;
+package tech.sushnag22.authenticator.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,36 +14,39 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import tech.sushnag22.authenticator.R;
+import tech.sushnag22.authenticator.util.RetrofitClient;
+import tech.sushnag22.authenticator.model.User;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText etUsername, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R .layout.activity_register);
+        setContentView(R.layout.activity_login);
 
-        etUsername = findViewById(R.id.etRUserName);
-        etPassword = findViewById(R.id.etRPassword);
+        etUsername = findViewById(R.id.etUserName);
+        etPassword = findViewById(R.id.etPassword);
 
-        findViewById(R.id.btnRegister).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
+                loginUser();
             }
         });
 
-        findViewById(R.id.tvLoginLink).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.tvRegisterLink).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
 
-    private void registerUser() {
-        String name = etUsername.getText().toString().trim();
+    private void loginUser() {
+        final String name = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
         if (name.isEmpty()) {
@@ -59,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getAPI()
-                .createUser(new User(name, password));
+                .checkUser(new User(name, password));
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -70,18 +73,17 @@ public class RegisterActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                if (s.equals("SUCCESS")) {
-                    Toast.makeText(RegisterActivity.this, "Successfully registered. Please login", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                if (s.equals(name)) {
+                    Toast.makeText(LoginActivity.this, "User logged in!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class).putExtra("username", name));
                 } else {
-                    Toast.makeText(RegisterActivity.this, "User already exists!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Incorrect Credentials! Try again!", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

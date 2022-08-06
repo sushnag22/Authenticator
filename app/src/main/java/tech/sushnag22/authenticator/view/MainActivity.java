@@ -1,10 +1,12 @@
-package tech.sushnag22.authenticator;
+package tech.sushnag22.authenticator.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import tech.sushnag22.authenticator.R;
 
 public class MainActivity extends AppCompatActivity {
 

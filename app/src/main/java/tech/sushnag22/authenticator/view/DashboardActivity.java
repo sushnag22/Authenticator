@@ -1,9 +1,11 @@
-package tech.sushnag22.authenticator;
+package tech.sushnag22.authenticator.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import tech.sushnag22.authenticator.R;
 
 public class DashboardActivity extends AppCompatActivity {
 
